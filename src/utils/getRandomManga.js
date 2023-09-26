@@ -1,8 +1,8 @@
 const baseURL = 'https://api.jikan.moe/v4'
     
 export default function getMangaBySearch(query) {
-    const endpoint = '/manga';
-    const url = `${baseURL}${endpoint}?sfw&q=${encodeURIComponent(query)}`;
+    const endpoint = '/random/manga';
+    const url = `${baseURL}${endpoint}`;
 
     return fetch(url)
         .then((response) => {

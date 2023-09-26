@@ -1,29 +1,24 @@
-import React, { useState } from 'react';
-
-import getMangaBySearch from './utils/getMangaBySearch';
+import { useContext } from 'react';
+import { MangodbContext } from './mangodbContext';
 
 import './App.css';
+import MangaList from '../src/components/MangaList';
 
-function App() {
+export default function App() {
 
-  const [ searchTerm, setSearchTerm ] = useState('');
-  const [ searchResults, setSearchResults ] = useState([]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getMangaBySearch(searchTerm)
-      .then((data) => {
-        setSearchResults(data);
-      })
-      .catch((error) => {
-        console.error('Error while fetching data:', error);
-      });
-  };
+  const {
+    handleSearchForManga,
+    searchTerm,
+    setSearchTerm,
+    searchResults,
+  } = useContext(MangodbContext);
 
   return (
     <div className="App">
 
-      <form onSubmit={handleSubmit}>
+      <MangaList />
+
+      <form onSubmit={handleSearchForManga}>
         <input 
           type="text" 
           name='search'
@@ -38,12 +33,10 @@ function App() {
         {searchResults.map((manga, index) => (
           <div>
             <img key={index} src={manga.images.jpg.image_url} alt={`Manga ${index}`} />
-            <h2>{`${manga.title} by ${manga.authors[0].name}`}</h2>
+            <h2>{`${manga.title} by ${manga.authors.length > 0 ? manga.authors[0].name : 'Unknown Author'}`}</h2>
           </div>
         ))}
       </div>
     </div>
   );
 }
-
-export default App;
