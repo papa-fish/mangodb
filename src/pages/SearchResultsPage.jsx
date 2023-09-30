@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { MangodbContext } from "../mangodbContext";
-import BookmarkButton from "./BookmarkButton";
+import BookmarkButton from "../components/BookmarkButton";
 
-import './SearchResults.css';
+import './SearchResultsPage.css';
 
 export default function SearchResults() {
 

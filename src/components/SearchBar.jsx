@@ -8,7 +8,6 @@ import getMangaBySearch from "../utils/getMangaBySearch";
 export default function SearchBar() {
 
     const { 
-        // handleSearchForManga,
         searchTerm, 
         setSearchTerm,
         setSearchResults,

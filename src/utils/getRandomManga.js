@@ -12,7 +12,6 @@ export default function getMangaBySearch(query) {
             return response.json();
         })
         .then((data) => {
-            console.log(data.data);
             return data.data
         })
         .catch((error) => {
