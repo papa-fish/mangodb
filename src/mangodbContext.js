@@ -1,23 +1,19 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
-import getMangaBySearch from './utils/getMangaBySearch';
+// import getMangaBySearch from './utils/getMangaBySearch';
 import getRandomMangas from "./utils/getRandomMangas";
 
 export const MangodbContext = createContext();
 
-export function MangodbProvider(props) {
 
+export function MangodbProvider(props) {
+  
     const [ searchTerm, setSearchTerm ] = useState('');
     const [ searchResults, setSearchResults ] = useState([]);
     const [ randomMangas, setRandomMangas ] = useState([]);
 
-    useEffect(() => {
-        generateRandomMangas();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-      const generateRandomMangas = (e) => {
-        getRandomMangas(10)
+      const generateRandomMangas = () => {
+        getRandomMangas(8)
             .then((data) => {
                 setRandomMangas(data);
             })
@@ -26,22 +22,14 @@ export function MangodbProvider(props) {
             });
       };
 
-      const handleSearchForManga = (e) => {
-        e.preventDefault();
-        getMangaBySearch(searchTerm)
-          .then((data) => {
-            setSearchResults(data);
-          })
-          .catch((error) => {
-            console.error('Error while fetching data: ', error);
-          });
-      };
+      
 
     const value = {
-        handleSearchForManga,
+        // handleSearchForManga,
         searchTerm,
         setSearchTerm,
         searchResults,
+        setSearchResults,
         generateRandomMangas,
         randomMangas
     };

@@ -1,0 +1,6 @@
+.manga-container {
+    display: grid;
+    justify-content: space-evenly;
+    width: fit-content;
+    grid-template-columns: repeat(4, 1fr);
+}

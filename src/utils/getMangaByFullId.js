@@ -1,8 +1,8 @@
-const baseURL = 'https://api.jikan.moe/v4'
-    
-export default function getMangaBySearch(query) {
+const baseURL = 'https://api.jikan.moe/v4';
+
+export default function getMangaByFullId(query) {
     const endpoint = '/manga';
-    const url = `${baseURL}${endpoint}?sfw&q=${encodeURIComponent(query)}`;
+    const url = `${baseURL}${endpoint}${query}/full`;
 
     return fetch(url)
         .then((response) => {
@@ -12,11 +12,9 @@ export default function getMangaBySearch(query) {
             return response.json();
         })
         .then((data) => {
-            // console.log(data.data);
             return data.data
         })
         .catch((error) => {
-            console.error('There was a problem with the fetch operation:', error);
-            throw error
+            console.error('There was a problem with the fetch operation: ', error);
         });
 };
