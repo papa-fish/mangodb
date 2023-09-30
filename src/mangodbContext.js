@@ -1,26 +1,30 @@
 import { createContext, useState } from "react";
+import { getUser } from './utils/users_service';
 
-// import getRandomMangas from "./utils/getRandomMangas";
 import getTopManga from "./utils/getTopManga";
 
 export const MangodbContext = createContext();
 
 export function MangodbProvider(props) {
   
+    const [ user, setUser ] = useState(getUser());
+    const [ formData, setFormData ] = useState({
+        email: "",
+        password: ""
+    });
+    const [ error, setError ] = useState("");
     const [ searchTerm, setSearchTerm ] = useState('');
     const [ searchResults, setSearchResults ] = useState([]);
-    // const [ randomMangas, setRandomMangas ] = useState([]);
     const [ topMangas, setTopMangas] = useState([]);
 
-    //   const generateRandomMangas = () => {
-    //     getRandomMangas(8)
-    //         .then((data) => {
-    //             setRandomMangas(data);
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error while fetching data: ', error);
-    //         });
-    //   };
+    function login(user) {
+      setUser(user)
+    };
+  
+    function logout() {
+      localStorage.removeItem('token');
+      setUser(null);
+    };
 
     const getTopMangas = () => {
         getTopManga(12)
@@ -33,12 +37,17 @@ export function MangodbProvider(props) {
     };
 
     const value = {
+        user,
+        formData,
+        setFormData,
+        error,
+        setError,
+        login,
+        logout,
         searchTerm,
         setSearchTerm,
         searchResults,
         setSearchResults,
-        // generateRandomMangas,
-        // randomMangas,
         getTopMangas,
         topMangas,
     };
