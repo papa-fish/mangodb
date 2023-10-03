@@ -30,11 +30,11 @@ export default function SearchBar() {
     return(
         <form onSubmit={handleSearchForManga}>
             <input 
-            type="text" 
-            name='search'
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder='Enter manga title' 
+              type="text" 
+              name='search'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder='Enter manga title' 
             />
             <button type='submit'>Search</button>
         </form>

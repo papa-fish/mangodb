@@ -25,7 +25,7 @@ export default function LoginPage({ onLogin }) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formData), // Include formData in the request body
+            body: JSON.stringify(formData),
         };
         fetch(url, requestOptions)
             .then((response) => {
@@ -44,13 +44,14 @@ export default function LoginPage({ onLogin }) {
                 console.log(error.message);
                 setError(error.message);
             });
+            console.log(formData);
     };
 
     return(
         <div>
         {error && <p>{error}</p>}
         <form onSubmit={handleSubmit} >
-            <input name="email" onChange={handleChange} type="text" />
+            <input name="email" onChange={(handleChange)} type="text" placeholder="enter email" />
             <input name="password" onChange={(handleChange)} type="password" />
             <button type="submit">Login</button>
         </form>

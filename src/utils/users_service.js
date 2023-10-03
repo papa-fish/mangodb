@@ -2,11 +2,12 @@ export function getUser() {
     const token = getToken();
     
     if(token) {
-        return getPayload(token)
+        const payload = getPayload(token);
+        return payload ? payload : null;
     } else {
         return null
     };
-};
+};  
 
 export function getToken() {
     const token = localStorage.getItem('token');
@@ -23,9 +24,15 @@ export function getToken() {
 };
 
 function getPayload(token) {
-    return JSON.parse(
-        window.atob(
-            token.split('.')[1]
-        )
-    );
-};
+    try {
+        const payload = JSON.parse(
+            window.atob(
+                token.split('.')[1]
+            )
+        );
+        return payload;
+    } catch (error) {
+        return null;
+    }
+}
+

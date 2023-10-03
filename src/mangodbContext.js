@@ -10,7 +10,7 @@ export function MangodbProvider(props) {
     const [ user, setUser ] = useState(getUser());
     const [ formData, setFormData ] = useState({
         email: "",
-        password: ""
+        password: "",
     });
     const [ error, setError ] = useState("");
     const [ searchTerm, setSearchTerm ] = useState('');

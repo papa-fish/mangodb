@@ -6,4 +6,9 @@
 
 .links {
     display: flex;
+    list-style: none;
+    padding: 0;
+    flex-grow: 0.1;
+    justify-content: space-around;
 }
+
